@@ -13,7 +13,7 @@ class _MealsState extends State<Meals> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: CustomAppBar(title: "Meals"),
+      appBar: const CustomAppBar(title: "Meals"),
     ));
   }
 }

@@ -10,9 +10,9 @@ class Categories extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
-      appBar: CustomAppBar(title: "Categories"),
+      appBar: const CustomAppBar(title: "Categories"),
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: GridView(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
