@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/widgets/app_bar.dart';
 
 class Meals extends StatefulWidget {
   const Meals({super.key});
@@ -12,7 +13,7 @@ class _MealsState extends State<Meals> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(title: Text("my meal")),
+      appBar: CustomAppBar(title: "Meals"),
     ));
   }
 }

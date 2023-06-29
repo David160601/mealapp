@@ -18,7 +18,7 @@ class _categoriesItemState extends State<categoriesItem> {
       splashColor: Colors.white,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: widget.category.color.withOpacity(0.9)),

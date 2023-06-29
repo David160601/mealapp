@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/dummies/data.dart';
+import 'package:mealapp/widgets/app_bar.dart';
 import 'package:mealapp/widgets/categories_item.dart';
 
 class Categories extends StatelessWidget {
@@ -9,13 +10,7 @@ class Categories extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text(
-          "Categories",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-      ),
+      appBar: CustomAppBar(title: "Categories"),
       body: Container(
         padding: EdgeInsets.all(20),
         child: GridView(
