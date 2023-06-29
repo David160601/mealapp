@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/models/category.dart';
+import 'package:mealapp/screens/meals.dart';
 
 // ignore: must_be_immutable
 class CategoriesItem extends StatefulWidget {
@@ -14,7 +15,12 @@ class _CategoriesItemState extends State<CategoriesItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Meals()),
+        );
+      },
       splashColor: Colors.white,
       borderRadius: BorderRadius.circular(15),
       child: Container(
