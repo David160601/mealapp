@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:mealapp/models/category.dart';
 
 // ignore: must_be_immutable
-class categoriesItem extends StatefulWidget {
-  Category category;
-  categoriesItem({super.key, required this.category});
+class CategoriesItem extends StatefulWidget {
+  final Category category;
+  const CategoriesItem({super.key, required this.category});
 
   @override
-  State<categoriesItem> createState() => _categoriesItemState();
+  State<CategoriesItem> createState() => _CategoriesItemState();
 }
 
-class _categoriesItemState extends State<categoriesItem> {
+class _CategoriesItemState extends State<CategoriesItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(

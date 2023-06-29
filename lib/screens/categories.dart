@@ -21,7 +21,7 @@ class Categories extends StatelessWidget {
               mainAxisSpacing: 20),
           children: [
             for (var item in availableCategories)
-              categoriesItem(
+              CategoriesItem(
                 category: item,
               )
           ],
