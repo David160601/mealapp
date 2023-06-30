@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/models/meal.dart';
+import 'package:mealapp/screens/meal_detail.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
   const MealItem({super.key, required this.meal});
+  void _onMealTap(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => MealDetail(
+                meal: meal,
+              )),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+        onTap: () {
+          _onMealTap(context);
+        },
         splashColor: Colors.white,
         child: Stack(
           children: [
