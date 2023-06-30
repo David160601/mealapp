@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mealapp/models/meal.dart';
 import 'package:mealapp/screens/categories.dart';
 import 'package:mealapp/screens/favorites_screen.dart';
+import 'package:mealapp/screens/setting_screeb.dart';
 import 'package:mealapp/widgets/app_bar.dart';
 import 'package:mealapp/widgets/main_drawer.dart';
 
@@ -41,6 +42,14 @@ class _TabScreenState extends State<TabScreen> {
     ));
   }
 
+  void _changeFilterScreen(String screenName) {
+    Navigator.pop(context);
+    if (screenName == "setting") {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SettingScreen()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     print(_favoriteMeals);
@@ -61,7 +70,9 @@ class _TabScreenState extends State<TabScreen> {
         child: Scaffold(
       appBar: CustomAppBar(title: _appBarTitle),
       body: _bodyWidget,
-      drawer: MainDrawer(),
+      drawer: MainDrawer(
+        changeFilterScreen: _changeFilterScreen,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

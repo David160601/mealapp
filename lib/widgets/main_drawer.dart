@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key});
+  void Function(String screenName) changeFilterScreen;
+  MainDrawer({super.key, required this.changeFilterScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +33,10 @@ class MainDrawer extends StatelessWidget {
               width: double.maxFinite,
               child: Column(children: [
                 ListTile(
-                  onTap: () {},
-                  title: Row(
+                  onTap: () {
+                    changeFilterScreen("meals");
+                  },
+                  title: const Row(
                     children: [
                       Icon(
                         Icons.restaurant,
@@ -48,8 +51,10 @@ class MainDrawer extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  onTap: () {},
-                  title: Row(
+                  onTap: () {
+                    changeFilterScreen("setting");
+                  },
+                  title: const Row(
                     children: [
                       Icon(
                         Icons.settings,

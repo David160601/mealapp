@@ -40,9 +40,9 @@ class MealItem extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Container(
-                  decoration: BoxDecoration(color: Colors.black54),
+                  decoration: const BoxDecoration(color: Colors.black54),
                   height: 80,
-                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Column(children: [
                     Text(
                       meal.title,
@@ -61,7 +61,7 @@ class MealItem extends StatelessWidget {
                           ),
                           Text(
                             "${meal.duration.toString()} min",
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           )
                         ]),
                         const SizedBox(
