@@ -18,8 +18,10 @@ class _TabScreenState extends State<TabScreen> {
     setState(() {
       if (_favoriteMeals.contains(meal)) {
         _favoriteMeals.remove(meal);
+        _showSnackbar("Favorite meal remove", Colors.red);
       } else {
         _favoriteMeals.add(meal);
+        _showSnackbar("Meal added to favorites", Colors.green);
       }
     });
   }
@@ -28,6 +30,14 @@ class _TabScreenState extends State<TabScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _showSnackbar(String message, Color color) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: color,
+    ));
   }
 
   @override
@@ -41,7 +51,10 @@ class _TabScreenState extends State<TabScreen> {
       _bodyWidget = Categories(onFavoritesMealToggle: onFavoritesMealToggle);
     } else {
       _appBarTitle = "Favorites";
-      _bodyWidget = Favorites_screen();
+      _bodyWidget = Favorites_screen(
+        onFavoritesMealToggle: onFavoritesMealToggle,
+        favoritesMeal: this._favoriteMeals,
+      );
     }
     return SafeArea(
         child: Scaffold(
@@ -51,12 +64,12 @@ class _TabScreenState extends State<TabScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.category),
+            label: 'Categories',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
           ),
         ],
         currentIndex: _selectedIndex,
