@@ -7,7 +7,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.black,
       iconTheme: const IconThemeData(
         color: Colors.white, //change your color here
       ),

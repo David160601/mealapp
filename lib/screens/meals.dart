@@ -41,7 +41,6 @@ class _MealsState extends State<Meals> {
     }
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Colors.black,
       appBar: CustomAppBar(title: widget.categoryTitle),
       body: render,
     ));

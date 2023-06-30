@@ -3,6 +3,7 @@ import 'package:mealapp/models/meal.dart';
 import 'package:mealapp/screens/categories.dart';
 import 'package:mealapp/screens/favorites_screen.dart';
 import 'package:mealapp/widgets/app_bar.dart';
+import 'package:mealapp/widgets/main_drawer.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
@@ -58,9 +59,9 @@ class _TabScreenState extends State<TabScreen> {
     }
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Colors.black,
       appBar: CustomAppBar(title: _appBarTitle),
       body: _bodyWidget,
+      drawer: MainDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -73,9 +74,6 @@ class _TabScreenState extends State<TabScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white38,
         onTap: _onItemTapped,
       ),
     ));

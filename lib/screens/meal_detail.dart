@@ -16,9 +16,7 @@ class _MealDetailState extends State<MealDetail> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
         ),
