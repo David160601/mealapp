@@ -74,6 +74,7 @@ class _TabScreenState extends State<TabScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Colors.orange,
         onTap: _onItemTapped,
       ),
     ));

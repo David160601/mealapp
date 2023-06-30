@@ -14,7 +14,6 @@ class MainDrawer extends StatelessWidget {
               children: [
                 Icon(
                   Icons.fastfood,
-                  color: Colors.white,
                   size: 40,
                 ),
                 SizedBox(
@@ -22,10 +21,7 @@ class MainDrawer extends StatelessWidget {
                 ),
                 Text(
                   "Cooking up!",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                 ),
               ],
             ),
@@ -41,14 +37,28 @@ class MainDrawer extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.restaurant,
-                        color: Colors.white,
                       ),
                       SizedBox(
                         width: 20,
                       ),
                       Text(
                         "Meals",
-                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  onTap: () {},
+                  title: Row(
+                    children: [
+                      Icon(
+                        Icons.settings,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "Settings",
                       ),
                     ],
                   ),
