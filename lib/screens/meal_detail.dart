@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/models/meal.dart';
-import 'package:mealapp/widgets/app_bar.dart';
 
 class MealDetail extends StatefulWidget {
   final Meal meal;
-  MealDetail({super.key, required this.meal});
+  void Function(Meal meal) onFavoritesMealToggle;
+  MealDetail(
+      {super.key, required this.meal, required this.onFavoritesMealToggle});
 
   @override
   State<MealDetail> createState() => _MealDetailState();
@@ -16,7 +17,24 @@ class _MealDetailState extends State<MealDetail> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
-      appBar: CustomAppBar(title: widget.meal.title),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: Text(
+          widget.meal.title,
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                widget.onFavoritesMealToggle(widget.meal);
+              },
+              icon: const Icon(Icons.star))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(children: [
           Image(image: NetworkImage(widget.meal.imageUrl)),
@@ -33,7 +51,7 @@ class _MealDetailState extends State<MealDetail> {
           for (final item in widget.meal.ingredients)
             Text(
               item,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           const SizedBox(
             height: 15,
@@ -50,7 +68,7 @@ class _MealDetailState extends State<MealDetail> {
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 )
               ],

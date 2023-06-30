@@ -6,7 +6,12 @@ import 'package:mealapp/widgets/meals_item.dart';
 class Meals extends StatefulWidget {
   final String categoryTitle;
   List<Meal> meals = [];
-  Meals({super.key, required this.meals, required this.categoryTitle});
+  void Function(Meal meal) onFavoritesMealToggle;
+  Meals(
+      {super.key,
+      required this.meals,
+      required this.categoryTitle,
+      required this.onFavoritesMealToggle});
 
   @override
   State<Meals> createState() => _MealsState();
@@ -27,7 +32,10 @@ class _MealsState extends State<Meals> {
       render = ListView.builder(
         itemCount: widget.meals.length,
         itemBuilder: (context, index) {
-          return MealItem(meal: widget.meals[index]);
+          return MealItem(
+            meal: widget.meals[index],
+            onFavoritesMealToggle: widget.onFavoritesMealToggle,
+          );
         },
       );
     }

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/dummies/data.dart';
-import 'package:mealapp/widgets/app_bar.dart';
+import 'package:mealapp/models/meal.dart';
 import 'package:mealapp/widgets/categories_item.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({super.key});
+  void Function(Meal meal) onFavoritesMealToggle;
+  Categories({super.key, required this.onFavoritesMealToggle});
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: GridView(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -19,6 +20,7 @@ class Categories extends StatelessWidget {
           for (var item in availableCategories)
             CategoriesItem(
               category: item,
+              onFavoritesMealToggle: onFavoritesMealToggle,
             )
         ],
       ),

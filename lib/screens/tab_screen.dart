@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/models/meal.dart';
 import 'package:mealapp/screens/categories.dart';
 import 'package:mealapp/screens/favorites_screen.dart';
 import 'package:mealapp/widgets/app_bar.dart';
@@ -11,24 +12,37 @@ class TabScreen extends StatefulWidget {
 }
 
 class _TabScreenState extends State<TabScreen> {
+  List<Meal> _favoriteMeals = [];
   int _selectedIndex = 0;
-  var _appBarTitle = "Categories";
-  Widget _bodyWidget = Categories();
+  void onFavoritesMealToggle(Meal meal) {
+    setState(() {
+      if (_favoriteMeals.contains(meal)) {
+        _favoriteMeals.remove(meal);
+      } else {
+        _favoriteMeals.add(meal);
+      }
+    });
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      if (_selectedIndex == 0) {
-        _appBarTitle = "Categories";
-        _bodyWidget = Categories();
-      } else {
-        _appBarTitle = "Favorites";
-        _bodyWidget = Favorites_screen();
-      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(_favoriteMeals);
+    var _appBarTitle = "Categories";
+    Widget _bodyWidget =
+        Categories(onFavoritesMealToggle: onFavoritesMealToggle);
+    if (_selectedIndex == 0) {
+      _appBarTitle = "Categories";
+      _bodyWidget = Categories(onFavoritesMealToggle: onFavoritesMealToggle);
+    } else {
+      _appBarTitle = "Favorites";
+      _bodyWidget = Favorites_screen();
+    }
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
