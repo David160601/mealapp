@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealapp/models/meal.dart';
+import 'package:mealapp/providers/meal_provider.dart';
 
-class MealDetail extends StatefulWidget {
+class MealDetail extends ConsumerStatefulWidget {
   final Meal meal;
-  void Function(Meal meal) onFavoritesMealToggle;
-  MealDetail(
-      {super.key, required this.meal, required this.onFavoritesMealToggle});
+
+  MealDetail({super.key, required this.meal});
 
   @override
-  State<MealDetail> createState() => _MealDetailState();
+  ConsumerState<MealDetail> createState() => _MealDetailState();
 }
 
-class _MealDetailState extends State<MealDetail> {
+class _MealDetailState extends ConsumerState<MealDetail> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,7 +29,15 @@ class _MealDetailState extends State<MealDetail> {
         actions: [
           IconButton(
               onPressed: () {
-                widget.onFavoritesMealToggle(widget.meal);
+                String result = ref
+                    .read(mealsProvider.notifier)
+                    .addFavoritiesMeal(widget.meal);
+
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(result),
+                  backgroundColor: Colors.green,
+                ));
               },
               icon: const Icon(Icons.star))
         ],
@@ -49,7 +58,6 @@ class _MealDetailState extends State<MealDetail> {
           for (final item in widget.meal.ingredients)
             Text(
               item,
-              style: const TextStyle(color: Colors.white),
             ),
           const SizedBox(
             height: 15,
@@ -64,7 +72,6 @@ class _MealDetailState extends State<MealDetail> {
                 Text(
                   item,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
                 ),
                 const SizedBox(
                   height: 20,

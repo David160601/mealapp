@@ -1,45 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mealapp/models/meal.dart';
+import 'package:mealapp/providers/meal_provider.dart';
 import 'package:mealapp/screens/categories.dart';
 import 'package:mealapp/screens/favorites_screen.dart';
 import 'package:mealapp/screens/setting_screeb.dart';
 import 'package:mealapp/widgets/app_bar.dart';
 import 'package:mealapp/widgets/main_drawer.dart';
 
-class TabScreen extends StatefulWidget {
+class TabScreen extends ConsumerStatefulWidget {
   const TabScreen({super.key});
 
   @override
-  State<TabScreen> createState() => _TabScreenState();
+  ConsumerState<TabScreen> createState() => _TabScreenState();
 }
 
-class _TabScreenState extends State<TabScreen> {
-  List<Meal> _favoriteMeals = [];
+class _TabScreenState extends ConsumerState<TabScreen> {
   int _selectedIndex = 0;
-  void onFavoritesMealToggle(Meal meal) {
-    setState(() {
-      if (_favoriteMeals.contains(meal)) {
-        _favoriteMeals.remove(meal);
-        _showSnackbar("Favorite meal remove", Colors.red);
-      } else {
-        _favoriteMeals.add(meal);
-        _showSnackbar("Meal added to favorites", Colors.green);
-      }
-    });
-  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  void _showSnackbar(String message, Color color) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-      backgroundColor: color,
-    ));
   }
 
   void _changeFilterScreen(String screenName) {
@@ -52,24 +34,22 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(_favoriteMeals);
-    var _appBarTitle = "Categories";
-    Widget _bodyWidget =
-        Categories(onFavoritesMealToggle: onFavoritesMealToggle);
+    List<Meal> favorites = ref.watch(mealsProvider);
+    var appBarTitle = "Categories";
+    Widget bodyWidget = Categories();
     if (_selectedIndex == 0) {
-      _appBarTitle = "Categories";
-      _bodyWidget = Categories(onFavoritesMealToggle: onFavoritesMealToggle);
+      appBarTitle = "Categories";
+      bodyWidget = Categories();
     } else {
-      _appBarTitle = "Favorites";
-      _bodyWidget = Favorites_screen(
-        onFavoritesMealToggle: onFavoritesMealToggle,
-        favoritesMeal: this._favoriteMeals,
+      appBarTitle = "Favorites";
+      bodyWidget = Favorites_screen(
+        favoritesMeal: favorites,
       );
     }
     return SafeArea(
         child: Scaffold(
-      appBar: CustomAppBar(title: _appBarTitle),
-      body: _bodyWidget,
+      appBar: CustomAppBar(title: appBarTitle),
+      body: bodyWidget,
       drawer: MainDrawer(
         changeFilterScreen: _changeFilterScreen,
       ),

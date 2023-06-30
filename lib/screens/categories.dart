@@ -4,8 +4,9 @@ import 'package:mealapp/models/meal.dart';
 import 'package:mealapp/widgets/categories_item.dart';
 
 class Categories extends StatelessWidget {
-  void Function(Meal meal) onFavoritesMealToggle;
-  Categories({super.key, required this.onFavoritesMealToggle});
+  Categories({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +21,6 @@ class Categories extends StatelessWidget {
           for (var item in availableCategories)
             CategoriesItem(
               category: item,
-              onFavoritesMealToggle: onFavoritesMealToggle,
             )
         ],
       ),

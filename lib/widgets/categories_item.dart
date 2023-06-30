@@ -7,9 +7,11 @@ import 'package:mealapp/screens/meals.dart';
 // ignore: must_be_immutable
 class CategoriesItem extends StatefulWidget {
   final Category category;
-  void Function(Meal meal) onFavoritesMealToggle;
-  CategoriesItem(
-      {super.key, required this.category, required this.onFavoritesMealToggle});
+
+  CategoriesItem({
+    super.key,
+    required this.category,
+  });
 
   @override
   State<CategoriesItem> createState() => _CategoriesItemState();
@@ -28,7 +30,6 @@ class _CategoriesItemState extends State<CategoriesItem> {
             builder: (context) => Meals(
                   categoryTitle: widget.category.title,
                   meals: meals,
-                  onFavoritesMealToggle: widget.onFavoritesMealToggle,
                 )),
       );
     }

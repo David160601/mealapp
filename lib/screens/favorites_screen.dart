@@ -4,11 +4,11 @@ import 'package:mealapp/widgets/meals_item.dart';
 
 class Favorites_screen extends StatelessWidget {
   List<Meal> favoritesMeal = [];
-  void Function(Meal meal) onFavoritesMealToggle;
-  Favorites_screen(
-      {super.key,
-      required this.favoritesMeal,
-      required this.onFavoritesMealToggle});
+
+  Favorites_screen({
+    super.key,
+    required this.favoritesMeal,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,8 @@ class Favorites_screen extends StatelessWidget {
         itemCount: favoritesMeal.length,
         itemBuilder: (context, index) {
           return MealItem(
-              meal: favoritesMeal[index],
-              onFavoritesMealToggle: onFavoritesMealToggle);
+            meal: favoritesMeal[index],
+          );
         });
   }
 }
